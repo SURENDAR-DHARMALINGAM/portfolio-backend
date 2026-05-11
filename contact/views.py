@@ -15,10 +15,12 @@ def contact_view(request):
 
         contact = serializer.save()
 
-        send_mail(
-            subject=f"Portfolio Contact from {contact.name}",
+        try:
 
-            message=f"""
+            send_mail(
+                subject=f"Portfolio Contact from {contact.name}",
+
+                message=f"""
 Name: {contact.name}
 
 Email: {contact.email}
@@ -27,12 +29,15 @@ Message:
 {contact.message}
 """,
 
-            from_email='dharmalingamsure007@gmail.com',
+                from_email='dharmalingamsure007@gmail.com',
 
-            recipient_list=['dharmalingamsure007@gmail.com'],
+                recipient_list=['dharmalingamsure007@gmail.com'],
 
-            fail_silently=False,
-        )
+                fail_silently=True,
+            )
+
+        except Exception as e:
+            print(e)
 
         return Response({
             "message": "Message Sent Successfully"
