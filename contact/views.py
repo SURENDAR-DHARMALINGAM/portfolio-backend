@@ -23,7 +23,7 @@ Email: {contact.email}
 Message:
 {contact.message}
 """,
-            from_email=contact.email,
+            from_email='dharmalingamsure007@gmail.com',
             recipient_list=['dharmalingamsure007@gmail.com'],
         )
 
